@@ -12,6 +12,8 @@ import java.net.InetAddress;
 import java.net.Socket;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -100,9 +102,20 @@ public class SocketClient implements Runnable {
                     int con = JOptionPane.showConfirmDialog(page, "Accept file:" + msg.content + " From User:" + msg.sender + " ?", "Accept file", JOptionPane.INFORMATION_MESSAGE, JOptionPane.YES_NO_OPTION, image.IconFileWaiting());
                     if (con == JOptionPane.YES_OPTION) {
                         JFileChooser jf = new JFileChooser();
-                        jf.setSelectedFile(new File(msg.content));
+                        String fileExtension = "";
+                        String nameWithoutExtension = "";
+                        int lastDotIndex = msg.content.lastIndexOf(".");
+                        if (lastDotIndex > 0) {
+                            fileExtension = msg.content.substring(lastDotIndex + 1);
+                            nameWithoutExtension = msg.content.substring(0, lastDotIndex);
+                        } else {
+                            nameWithoutExtension = msg.content;
+                        }
+                        jf.setSelectedFile(new File(nameWithoutExtension));
+                        FileFilter filter = new FileNameExtensionFilter("File " + fileExtension, fileExtension);
+                        jf.setFileFilter(filter);
                         int returnVal = jf.showSaveDialog(null);
-                        String saveTo = jf.getSelectedFile().getPath();
+                        String saveTo = jf.getSelectedFile().getPath() + "." + fileExtension;
                         if (saveTo != null && returnVal == JFileChooser.APPROVE_OPTION) {
                             Download dwn = new Download(saveTo);
                             Thread t = new Thread(dwn);
@@ -114,12 +127,13 @@ public class SocketClient implements Runnable {
                     }
                 } else if (msg.type.equals("upload_res")) {
                     if (!msg.content.equals("NO")) {
-                        JOptionPane.showMessageDialog(null, "User accepted File, File is Uploading", "Notification", JOptionPane.INFORMATION_MESSAGE, image.Accept());
+
                         int port = Integer.parseInt(msg.content);
                         String addr = msg.sender;
                         Upload upl = new Upload(addr, port, send.file, send.getPublicKey());
                         Thread t = new Thread(upl);
                         t.start();
+                        JOptionPane.showMessageDialog(null, "User accepted File, File is Uploading", "Notification", JOptionPane.INFORMATION_MESSAGE, image.Accept());
                     }
                 } else if (msg.type.equals("upload_res_noaccept")) {
                     JOptionPane.showMessageDialog(null, "User rejected file, Upload file Cancel", "Notification", JOptionPane.INFORMATION_MESSAGE, image.Cancel());
