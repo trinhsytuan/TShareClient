@@ -62,7 +62,7 @@ public class ViewPublicKey extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 143, 0));
-        jLabel1.setText("View PublicKey");
+        jLabel1.setText("View Public Key");
 
         jLabel2.setText("View Public Key User:");
 
@@ -110,7 +110,7 @@ public class ViewPublicKey extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(161, 161, 161)
                 .addComponent(jLabel1)
-                .addContainerGap(169, Short.MAX_VALUE))
+                .addContainerGap(163, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

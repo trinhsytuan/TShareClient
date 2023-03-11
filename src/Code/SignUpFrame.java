@@ -144,12 +144,15 @@ public class SignUpFrame extends javax.swing.JFrame {
         String password = new String(txtPassword.getPassword());
         if (username.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Username is required!", "Notification", JOptionPane.ERROR_MESSAGE);
+            return;
         }
         if (password.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Password is required!", "Notification", JOptionPane.ERROR_MESSAGE, image.Lock());
+            return;
         }
         if (password.trim().length() < 6) {
             JOptionPane.showMessageDialog(this, "Password must be at least 6 characters", "Notification", JOptionPane.ERROR_MESSAGE, image.Lock());
+            return;
         }
         try {
             String passwordnew = sha.getSHA(password + "NHOM1");
