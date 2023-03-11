@@ -92,13 +92,13 @@ public class SocketClient implements Runnable {
                     } else {
                         String user = msg.rs.get(0);
                         String PK = msg.rs.get(1);
-                        send = new SendFile(PK,user, this);
+                        send = new SendFile(PK, user, this);
                         send.setVisible(true);
-                        
+
                     }
-                } else if(msg.type.equals("upload_req")) {
-                    int con = JOptionPane.showConfirmDialog(page, "Accept file:"+msg.content+" From User:"+msg.sender+" ?","Accept file", JOptionPane.INFORMATION_MESSAGE,JOptionPane.YES_NO_OPTION, image.IconFileWaiting());
-                    if(con == JOptionPane.YES_OPTION) {
+                } else if (msg.type.equals("upload_req")) {
+                    int con = JOptionPane.showConfirmDialog(page, "Accept file:" + msg.content + " From User:" + msg.sender + " ?", "Accept file", JOptionPane.INFORMATION_MESSAGE, JOptionPane.YES_NO_OPTION, image.IconFileWaiting());
+                    if (con == JOptionPane.YES_OPTION) {
                         JFileChooser jf = new JFileChooser();
                         jf.setSelectedFile(new File(msg.content));
                         int returnVal = jf.showSaveDialog(null);
@@ -109,17 +109,19 @@ public class SocketClient implements Runnable {
                             t.start();
                             send(new Message("upload_res", msg.sender, ("" + dwn.port), msg.sender));
                         }
+                    } else if (con == JOptionPane.NO_OPTION) {
+                        send(new Message("upload_res", msg.sender, "NO", msg.sender));
                     }
                 } else if (msg.type.equals("upload_res")) {
                     if (!msg.content.equals("NO")) {
-                       JOptionPane.showMessageDialog(null, "User accepted File, File is Uploading", "Notification", JOptionPane.INFORMATION_MESSAGE, image.Accept());
+                        JOptionPane.showMessageDialog(null, "User accepted File, File is Uploading", "Notification", JOptionPane.INFORMATION_MESSAGE, image.Accept());
                         int port = Integer.parseInt(msg.content);
                         String addr = msg.sender;
                         Upload upl = new Upload(addr, port, send.file, send.getPublicKey());
                         Thread t = new Thread(upl);
                         t.start();
                     }
-                } else if(msg.type.equals("upload_res_noaccept")) {
+                } else if (msg.type.equals("upload_res_noaccept")) {
                     JOptionPane.showMessageDialog(null, "User rejected file, Upload file Cancel", "Notification", JOptionPane.INFORMATION_MESSAGE, image.Cancel());
                 }
 

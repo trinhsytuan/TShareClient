@@ -23,6 +23,7 @@ public class SendFile extends javax.swing.JFrame {
     IconImage image = new IconImage();
     InfomationUser info = new InfomationUser();
     public File file;
+
     public SendFile() {
         initComponents();
         initIcon();
@@ -45,6 +46,7 @@ public class SendFile extends javax.swing.JFrame {
         this.setIconImage(image);
         setLocationRelativeTo(null);
     }
+
     public String getPublicKey() {
         return publicKey;
     }
@@ -165,13 +167,12 @@ public class SendFile extends javax.swing.JFrame {
 
         if (file != null) {
             if (!file.getName().isEmpty()) {
-                
+
                 long size = file.length();
-                System.out.println(size);
                 if (size < 1024 * 1024 * 1024) {
                     socket.send(new Message("upload_req", info.Username, file.getName(), username));
                 } else {
-                    JOptionPane.showMessageDialog(null, "File is Large, TShare support max file size 1GB", "File Large", JOptionPane.ERROR_MESSAGE,image.FileLarge());
+                    JOptionPane.showMessageDialog(null, "File is Large, TShare support max file size 1GB", "File Large", JOptionPane.ERROR_MESSAGE, image.FileLarge());
                 }
             }
         }

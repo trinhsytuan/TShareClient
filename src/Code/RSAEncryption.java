@@ -27,5 +27,5 @@ public class RSAEncryption {
         PrivateKey privateKey = kp.getPrivate();
         InfomationUser Info = new InfomationUser(Base64.getEncoder().encodeToString(publicKey.getEncoded()), Base64.getEncoder().encodeToString(privateKey.getEncoded()));
     }
-   
+
 }

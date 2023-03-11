@@ -18,10 +18,12 @@ import javax.swing.UIManager;
  * @author Admin
  */
 public class HomePage extends javax.swing.JFrame {
+
     SocketClient sc;
     SignUpFrame signup;
     InfomationUser user = new InfomationUser();
     TextShA sha = new TextShA();
+
     /**
      * Creates new form HomePage
      */
@@ -30,19 +32,23 @@ public class HomePage extends javax.swing.JFrame {
         initIcon();
         this.sc = sc;
     }
+
     public HomePage() {
         initComponents();
         initIcon();
     }
+
     public void initIcon() {
         Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/iconTShare.png"));
         this.setIconImage(image);
         setLocationRelativeTo(null);
     }
+
     public void setRegister(String username, String password) {
         txtUsername.setText(username);
         txtPassword.setText(password);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -118,7 +124,7 @@ public class HomePage extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText("Copyright by T Services (2016 - 2023)");
+        jLabel6.setText("Product by Group 1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -156,7 +162,7 @@ public class HomePage extends javax.swing.JFrame {
                         .addGap(63, 63, 63)
                         .addComponent(btnRegister))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(244, 244, 244)
+                        .addGap(286, 286, 286)
                         .addComponent(jLabel6)))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
@@ -195,18 +201,18 @@ public class HomePage extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String host = txtIPServer.getText();
-        if(host.isEmpty()) {
+        if (host.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Host is Empty", "Notification", JOptionPane.ERROR_MESSAGE);
-            return ;
+            return;
         }
-        try{
+        try {
             sc.connect(host);
             Thread t = new Thread(sc);
             t.start();
-        } catch(Exception ex) {
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Error Connection Server, please check IP Server or Make sure your server is up", "Notification", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
-            return ;
+            return;
         }
         btnLogin.setEnabled(true);
         btnRegister.setEnabled(true);
@@ -218,14 +224,14 @@ public class HomePage extends javax.swing.JFrame {
             // TODO add your handling code here:
             String Username = txtUsername.getText();
             String password = txtPassword.getText();
-            if(Username.isEmpty() || password.isEmpty()) {
+            if (Username.isEmpty() || password.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Username or Password is required", "Notification", JOptionPane.ERROR_MESSAGE);
-                return ;
+                return;
             }
             password = sha.getSHA(password + "NHOM1");
             user = new InfomationUser(Username);
             sc.send(new Message("LOGIN", Username, password, user.getPublicKey()));
-            
+
         } catch (NoSuchAlgorithmException ex) {
             System.out.println("Error Login");
         }
@@ -245,14 +251,13 @@ public class HomePage extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
-        try{
-             sc.send(new Message("BYE", InfomationUser.Username, "BYE", "SERVER"));
-             System.exit(0);
-        }
-        catch(Exception ex) {
+        try {
+            sc.send(new Message("BYE", InfomationUser.Username, "BYE", "SERVER"));
+            System.exit(0);
+        } catch (Exception ex) {
             System.exit(0);
         }
-        
+
     }//GEN-LAST:event_formWindowClosing
 
     /**
@@ -281,9 +286,9 @@ public class HomePage extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(HomePage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        try{
+        try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch(Exception ex) {
+        } catch (Exception ex) {
             System.out.println("LAF ERROR");
         }
         /* Create and display the form */

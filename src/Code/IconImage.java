@@ -44,23 +44,33 @@ public class IconImage {
         Icon icon = new ImageIcon(image);
         return icon;
     }
-     public Icon FileLarge() {
+
+    public Icon FileLarge() {
         Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/FileLarge.png"));
         Icon icon = new ImageIcon(image);
         return icon;
     }
-     public Icon IconFileWaiting() {
+
+    public Icon IconFileWaiting() {
         Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/sentFileUser.png"));
         Icon icon = new ImageIcon(image);
         return icon;
     }
-     public Icon Accept() {
+
+    public Icon Accept() {
         Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/accept.png"));
         Icon icon = new ImageIcon(image);
         return icon;
     }
-      public Icon Cancel() {
+
+    public Icon Cancel() {
         Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/cancel.png"));
+        Icon icon = new ImageIcon(image);
+        return icon;
+    }
+
+    public Icon Lock() {
+        Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/lock.png"));
         Icon icon = new ImageIcon(image);
         return icon;
     }

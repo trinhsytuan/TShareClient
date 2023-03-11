@@ -37,7 +37,6 @@ public class TShare {
         home.updateSocket(socket);
         socket.updatehomePage(page);
         page.setVisible(true);
-        
 
     }
 

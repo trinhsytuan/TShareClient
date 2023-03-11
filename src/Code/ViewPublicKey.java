@@ -21,6 +21,7 @@ public class ViewPublicKey extends javax.swing.JFrame {
         initIcon();
     }
     String publicKey;
+
     public ViewPublicKey(String publicKey, String username) {
         initComponents();
         initIcon();
@@ -29,14 +30,17 @@ public class ViewPublicKey extends javax.swing.JFrame {
         lbUser.setText(username);
         appendPK();
     }
+
     public void appendPK() {
         tbKey.setText(publicKey);
     }
+
     public void initIcon() {
         Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/iconTShare.png"));
         this.setIconImage(image);
         setLocationRelativeTo(null);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

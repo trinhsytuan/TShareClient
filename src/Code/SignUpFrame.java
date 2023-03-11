@@ -17,9 +17,12 @@ import javax.swing.UIManager;
  * @author Admin
  */
 public class SignUpFrame extends javax.swing.JFrame {
+
     SocketClient socket;
     HomePage home;
     TextShA sha = new TextShA();
+    IconImage image = new IconImage();
+
     /**
      * Creates new form SignUpFrame
      */
@@ -27,18 +30,20 @@ public class SignUpFrame extends javax.swing.JFrame {
         initComponents();
         initIcon();
     }
+
     public SignUpFrame(SocketClient socket, HomePage home) {
         initComponents();
         initIcon();
         this.socket = socket;
         this.home = home;
     }
-    
+
     public void initIcon() {
         Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/iconTShare.png"));
         this.setIconImage(image);
         setLocationRelativeTo(null);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -137,28 +142,31 @@ public class SignUpFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         String username = txtUsername.getText();
         String password = new String(txtPassword.getPassword());
-        if(username.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Username is required!", "Notification",JOptionPane.ERROR_MESSAGE);
+        if (username.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Username is required!", "Notification", JOptionPane.ERROR_MESSAGE);
         }
-        if(password.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Password is required!", "Notification",JOptionPane.ERROR_MESSAGE);
+        if (password.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Password is required!", "Notification", JOptionPane.ERROR_MESSAGE, image.Lock());
+        }
+        if (password.trim().length() < 6) {
+            JOptionPane.showMessageDialog(this, "Password must be at least 6 characters", "Notification", JOptionPane.ERROR_MESSAGE, image.Lock());
         }
         try {
             String passwordnew = sha.getSHA(password + "NHOM1");
-            socket.send(new Message("SIGNUP", username,passwordnew,"SERVER"));
+            socket.send(new Message("SIGNUP", username, passwordnew, "SERVER"));
         } catch (NoSuchAlgorithmException ex) {
             System.out.println("Send SIGNUP ERROR");
             ex.printStackTrace();
         }
         home.setRegister(username, password);
-        
+
         this.setVisible(false);
         home.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_formWindowClosed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -198,9 +206,9 @@ public class SignUpFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(SignUpFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        try{
+        try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch(Exception ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
         /* Create and d isplay the form */

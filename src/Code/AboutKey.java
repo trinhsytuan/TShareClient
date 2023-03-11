@@ -43,10 +43,12 @@ public class AboutKey extends javax.swing.JFrame {
         setLocationRelativeTo(null);
 
     }
+
     public void UnKeyPair() {
-            ta_publicKey.setText(info.getPublicKey());
-            ta_privateKey.setText(info.getPrivateKey());
+        ta_publicKey.setText(info.getPublicKey());
+        ta_privateKey.setText(info.getPrivateKey());
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

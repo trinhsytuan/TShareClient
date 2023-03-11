@@ -44,9 +44,9 @@ public class Upload implements Runnable {
         try {
             byte[] buffer = new byte[245];
             int count;
-            while ((count = In.read(buffer))!= -1) {
+            while ((count = In.read(buffer)) != -1) {
                 byte[] output = cipher.doFinal(buffer, 0, count);
-                Out.write(output, 0,output.length);
+                Out.write(output, 0, output.length);
             }
             Out.flush();
             if (In != null) {

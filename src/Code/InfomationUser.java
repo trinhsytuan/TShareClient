@@ -11,24 +11,26 @@ import com.mysql.cj.callback.UsernameCallback;
  * @author Hp
  */
 public class InfomationUser {
+
     public static String Username;
     public static String publicKey;
     public static String privateKey;
 
-
     public InfomationUser() {
     }
+
     public InfomationUser(String us) {
         Username = us;
     }
-    public InfomationUser(String publicKey,String privateKey) {
+
+    public InfomationUser(String publicKey, String privateKey) {
         this.privateKey = privateKey;
         this.publicKey = publicKey;
     }
+
     public static String getUsername() {
         return Username;
     }
-    
 
     public static String getPublicKey() {
         return publicKey;
@@ -46,6 +48,4 @@ public class InfomationUser {
         InfomationUser.privateKey = privateKey;
     }
 
-   
-    
 }

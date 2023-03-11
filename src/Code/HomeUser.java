@@ -21,36 +21,44 @@ public class HomeUser extends javax.swing.JFrame {
     SocketClient socket;
     InfomationUser info = new InfomationUser();
     DefaultListModel model = new DefaultListModel();
+
     public HomeUser() {
         initComponents();
         initIcon();
     }
+
     public void updateSocket(SocketClient sk) {
         socket = sk;
     }
+
     public void initIcon() {
         Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/iconTShare.png"));
         this.setIconImage(image);
     }
+
     public void setTitle() {
         setTitle("Home Page - " + info.getUsername() + " - TShare");
-        
+
     }
+
     public void getListUser() {
         socket.send(new Message("GetUser", info.getUsername(), "Get User", "SERVER"));
     }
+
     public void UpdateUser(Vector<String> data) {
         model.clear();
-        for(int i = 0; i < data.size();i++) {
+        for (int i = 0; i < data.size(); i++) {
             model.addElement(data.get(i));
         }
         list_user.setModel(model);
     }
+
     public void newUser(String username) {
-        
+
         model.addElement(username);
         list_user.setModel(model);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -175,7 +183,7 @@ public class HomeUser extends javax.swing.JFrame {
 
     private void list_userMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_list_userMouseClicked
         // TODO add your handling code here:
-        if(evt.getClickCount() == 2) {
+        if (evt.getClickCount() == 2) {
             socket.send(new Message("SendToUser", info.getUsername(), list_user.getSelectedValue(), "SERVER"));
         }
     }//GEN-LAST:event_list_userMouseClicked

@@ -39,8 +39,4 @@ public class Message implements Serializable {
         this.rs = rs;
     }
 
-    
-
-    
-
 }

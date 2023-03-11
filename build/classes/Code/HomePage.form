@@ -69,7 +69,7 @@
                       <Component id="btnRegister" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="244" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="286" max="-2" attributes="0"/>
                       <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -189,7 +189,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Copyright by T Services (2016 - 2023)"/>
+        <Property name="text" type="java.lang.String" value="Product by Group 1"/>
       </Properties>
     </Component>
   </SubComponents>
