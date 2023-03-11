@@ -70,6 +70,7 @@ public class HomePage extends javax.swing.JFrame {
         btnLogin = new javax.swing.JButton();
         btnRegister = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TShare - Home Page");
@@ -126,6 +127,13 @@ public class HomePage extends javax.swing.JFrame {
 
         jLabel6.setText("Product by Group 1");
 
+        jButton2.setText("About Group");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -163,7 +171,9 @@ public class HomePage extends javax.swing.JFrame {
                         .addComponent(btnRegister))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(286, 286, 286)
-                        .addComponent(jLabel6)))
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -190,8 +200,10 @@ public class HomePage extends javax.swing.JFrame {
                     .addComponent(btnLogin)
                     .addComponent(btnRegister))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
-                .addGap(0, 9, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jButton2))
+                .addGap(0, 2, Short.MAX_VALUE))
         );
 
         pack();
@@ -260,6 +272,12 @@ public class HomePage extends javax.swing.JFrame {
 
     }//GEN-LAST:event_formWindowClosing
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        AboutProduct product = new AboutProduct();
+        product.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -303,6 +321,7 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnRegister;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
