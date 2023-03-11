@@ -4,29 +4,25 @@
  */
 package Code;
 
-import java.io.IOException;
 import javax.swing.UIManager;
 
 /**
  *
  * @author Admin
  */
-public class TShare {
+public class TShareServer {
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws IOException {
-        try {
+    public static void main(String[] args) {
+        try{
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception ex) {
-            System.out.println("LAF ERROR");
+        } catch(Exception e) {
+            e.printStackTrace();
         }
-        HomeUser home = new HomeUser();
-        SocketClient socket = new SocketClient(home);
-        HomePage page = new HomePage(socket);
-        page.setVisible(true);
-
+        MainServer server= new MainServer();
+        server.setVisible(true);
     }
-
+    
 }
