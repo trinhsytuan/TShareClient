@@ -7,6 +7,7 @@ package Code;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.File;
+import java.util.Vector;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -23,6 +24,7 @@ public class SendFile extends javax.swing.JFrame {
     IconImage image = new IconImage();
     InfomationUser info = new InfomationUser();
     public File file;
+    public RC4Encryption rc4 = new RC4Encryption();
 
     public SendFile() {
         initComponents();
@@ -170,7 +172,9 @@ public class SendFile extends javax.swing.JFrame {
 
                 long size = file.length();
                 if (size < 1024 * 1024 * 1024) {
-                    socket.send(new Message("upload_req", info.Username, file.getName(), username));
+                    Vector<String> vt = new Vector<String>();
+                    vt.add(rc4.encryptKeyRSA(publicKey));
+                    socket.send(new Message("upload_req", info.Username, file.getName(), username,vt));
                 } else {
                     JOptionPane.showMessageDialog(null, "File is Large, TShare support max file size 1GB", "File Large", JOptionPane.ERROR_MESSAGE, image.FileLarge());
                 }

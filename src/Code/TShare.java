@@ -23,6 +23,7 @@ public class TShare {
         try {
             RSAEncryption rsa = new RSAEncryption();
             RC4Encryption rc4 = new RC4Encryption();
+            rc4.init();
         } catch (NoSuchAlgorithmException ex) {
             ex.printStackTrace();
         }

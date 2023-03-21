@@ -23,6 +23,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class SocketClient implements Runnable {
 
     public int port = 2023;
+    public RC4Encryption rc4 = new RC4Encryption();
     public String serverAddr;
     public SendFile send;
     public GetIPAdd IpAdd = new GetIPAdd();
@@ -55,7 +56,7 @@ public class SocketClient implements Runnable {
         try {
             Out.writeObject(msg);
             Out.flush();
-            System.out.println("Outgoing : " + msg.toString());
+            //System.out.println("Outgoing : " + msg.toString());
 
         } catch (IOException ex) {
             System.out.println("Exception SocketClient send()");
@@ -119,7 +120,8 @@ public class SocketClient implements Runnable {
                         int returnVal = jf.showSaveDialog(null);
                         String saveTo = jf.getSelectedFile().getPath() + "." + fileExtension;
                         if (saveTo != null && returnVal == JFileChooser.APPROVE_OPTION) {
-                            Download dwn = new Download(saveTo);
+                            String Key = msg.rs.get(0);
+                            Download dwn = new Download(saveTo, Key);
                             Thread t = new Thread(dwn);
                             t.start();
                             Vector<String> vt = new Vector<String>();
@@ -131,7 +133,6 @@ public class SocketClient implements Runnable {
                     }
                 } else if (msg.type.equals("upload_res")) {
                     if (!msg.content.equals("NO")) {
-
                         int port = Integer.parseInt(msg.content);
                         String addr = msg.sender;
                         Upload upl = new Upload(addr, port, send.file, send.getPublicKey());
@@ -146,6 +147,7 @@ public class SocketClient implements Runnable {
             } catch (Exception ex) {
                 running = false;
                 System.out.println("Disconnected Server");
+                ex.printStackTrace();
 
             }
 

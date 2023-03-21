@@ -50,4 +50,12 @@ public class InfomationUser {
         InfomationUser.privateKey = privateKey;
     }
 
+    public static String getRc4Key() {
+        return rc4Key;
+    }
+
+    public static void setRc4Key(String rc4Key) {
+        InfomationUser.rc4Key = rc4Key;
+    }
+
 }

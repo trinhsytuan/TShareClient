@@ -20,7 +20,7 @@ public class Upload implements Runnable {
     public File file;
     public Cipher cipher;
     public PublicKey pk;
-
+    public RC4Encryption rc4 = new RC4Encryption();
     public Upload(String addr, int port, File filepath, String publicKey) {
         super();
         try {
@@ -29,12 +29,7 @@ public class Upload implements Runnable {
             socket = new Socket(InetAddress.getByName(addr), port);
             Out = socket.getOutputStream();
             In = new FileInputStream(filepath);
-            byte[] byteKey = Base64.getDecoder().decode(publicKey);
-            X509EncodedKeySpec X509publicKey = new X509EncodedKeySpec(byteKey);
-            KeyFactory kf = KeyFactory.getInstance("RSA");
-            pk = kf.generatePublic(X509publicKey);
-            cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
-            cipher.init(Cipher.ENCRYPT_MODE, pk);
+            cipher = rc4.maHoa(InfomationUser.getRc4Key());
         } catch (Exception ex) {
             System.out.println("Exception [Upload : Upload(...)]");
         }
