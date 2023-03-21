@@ -34,7 +34,7 @@ public class RC4Encryption {
     public void init() {
         try {
             KeyGenerator keyGenerator = KeyGenerator.getInstance("RC4");
-            keyGenerator.init(128);
+            keyGenerator.init(512);
             secretKey = keyGenerator.generateKey();
             byte[] key = secretKey.getEncoded();
             infomationUser = new InfomationUser(key);

@@ -48,7 +48,7 @@ public class Download implements Runnable {
             In = socket.getInputStream();
             Out = new FileOutputStream(saveTo);
             
-            byte[] buffer = new byte[256];
+            byte[] buffer = new byte[64];
             int count;
             while ((count = In.read(buffer)) >= 0) {
                 byte[] output = cipher.doFinal(buffer, 0, count);

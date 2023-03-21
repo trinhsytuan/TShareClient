@@ -38,7 +38,7 @@ public class Upload implements Runnable {
     @Override
     public void run() {
         try {
-            byte[] buffer = new byte[245];
+            byte[] buffer = new byte[64];
             int count;
             while ((count = In.read(buffer)) != -1) {
                 byte[] output = cipher.doFinal(buffer, 0, count);
